@@ -1,19 +1,38 @@
-const Aoijs = require("aoi.js")
-const TOKEN = process.env.token;
+const aoijs = require("aoi.js")
 require("dotenv").config();
 
-const bot = new Aoijs.Bot({
+const bot = new aoijs.Bot({
 token: process.env.token, 
-prefix: process.env.prefix 
+prefix: process.env.prefix,
+intents: "all"
 })
+const voice = new aoijs.Voice(bot, {
+  cache: {
+    cacheType: "Memory",//Disk | None
+    enabled: true,
+  },
+}); 
+//Events
+bot.onMessage()
+
+//Command Example (ping)
+bot.command({
+name: "ping",
+code: `Pong! $pingms`
+})
+
+//Ready Event
+bot.readyCommand({
+    channel: "",
+    code: `$log[Ready on $userTag[$clientID]]`
+})
+
+
 bot.status({
-  text: "Bot dev By Snipeur060",
+  text: "V3 FlyBot By Snipeur060",
   type: "PLAYING",
   status: "dnd",
   time: 12
 })
-
-
-bot.loadCommands('./command/')
-
-
+const loader = new aoijs.LoadCommands(bot)
+ loader.load(bot.cmd,"./commands/")
