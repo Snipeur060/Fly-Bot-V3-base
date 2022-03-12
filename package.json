@@ -13,6 +13,7 @@
     "license": "ISC",
     "dependencies": {
       "aoi.js": "^5.1.0",
-        "@akarui/aoi.music": "^1.0.2"
+        "@akarui/aoi.music": "^1.0.2",
+          "dotenv": "^16.0.0"
     }
   }
